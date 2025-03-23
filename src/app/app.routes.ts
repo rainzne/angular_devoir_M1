@@ -5,13 +5,19 @@ import { NavigationErrorComponent } from './navigation-error-component/navigatio
 import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { authGuard } from './shared/auth.guard';
+import { HomeComponent } from '../home/home.component';
 
 export const routes: Routes = [
     // Pour la page d'accueil
     // On y accèdera avec l'URL : http://localhost:4200/home
     // ou simplement http://localhost:4200
-    {path: '', component: AssignmentsComponent},
-    {path: 'home', component: AssignmentsComponent},
+    {path: '', component: HomeComponent},
+    {path: 'home', component: HomeComponent},
+    // j'ai rajouté une page home simple pour avoir quelque chose de propre a afficher
+
+    // Pour la liste des assignments
+    // On y accèdera avec l'URL : http://localhost:4200/assignments
+    { path: 'assignments', component: AssignmentsComponent },
     // Pour l'ajout d'assignments
     // On y accèdera avec l'URL : http://localhost:4200/add
     {path: 'add', component: AddAssignmentComponent},

@@ -6,3 +6,6 @@ mat-sidenav {
   width: 200px;
   background-color: azure;
 }
+button {
+  margin-bottom: 5px;
+}

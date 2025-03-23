@@ -55,14 +55,14 @@ export class AppComponent {
     });
   }
   
-  login() {
+    login() {
     // Si déjà connecté, on déconnecte
     if(this.authService.loggedIn) {
       this.authService.logout();
       this.router.navigate(['/home']);
       return;
     }
-    
+
     // Sinon, on ouvre le dialogue de connexion
     const dialogRef = this.dialog.open(LoginComponent, {
       width: '350px'
@@ -74,5 +74,11 @@ export class AppComponent {
         this.router.navigate(['/home']);
       }
     });
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/home']);
+    return;
   }
 }
