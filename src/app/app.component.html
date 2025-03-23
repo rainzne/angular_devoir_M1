@@ -1,0 +1,32 @@
+<h1>
+  <nav>
+    <a routerLink="/home">{{titre}}</a>
+  </nav>
+  <button mat-button color="primary"(click)="login()"> login</button>
+</h1>
+<button mat-raised-button color="primary" (click)="genererDonneesDeTest()">
+  PEUPLER BD AVEC DONNEES DE TEST
+</button>
+
+
+<mat-toolbar color="primary">
+  
+<mat-toolbar-row>
+  <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+  
+  <span>Mon application</span>
+</mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav [(opened)]="opened" #sidenav mode="side" >
+   
+      <a mat-list-item routerLink="/home" (click)="sidenav.close()" style="text-decoration: none;">Home</a>
+      <a mat-list-item routerLink="/add" (click)="sidenav.close()"style="text-decoration: none;">adds</a>
+      
+      
+    
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
