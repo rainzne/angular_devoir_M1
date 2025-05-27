@@ -9,7 +9,7 @@ export class AuthService {
   private apiUrl = 'http://localhost:8010/api/auth';
   private currentUserSubject = new BehaviorSubject<any>(null);
   public currentUser = this.currentUserSubject.asObservable();
-  public loggedIn = false; // Ajout de la propriété manquante
+  public loggedIn = false; 
 
   constructor(private http: HttpClient) {
     // Récupérer l'utilisateur depuis localStorage si disponible

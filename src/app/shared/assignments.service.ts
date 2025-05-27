@@ -8,33 +8,32 @@ import { bdInitialAssignments } from './data';
   providedIn: 'root'
 })
 export class AssignmentsService {
-  private apiUrl = 'http://localhost:8010/api';
+  private baseUri = 'http://localhost:8010/api/assignments';
 
   constructor(private http: HttpClient) { }
 
   getAssignments(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/assignments`);
+    return this.http.get(`${this.baseUri}`);
   }
 
-  
   getAssignmentsPagines(page: number, limit: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/assignments?page=${page}&limit=${limit}`);
+    return this.http.get(`${this.baseUri}?page=${page}&limit=${limit}`);
   }
 
   getAssignment(id: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/assignments/${id}`);
+    return this.http.get(`${this.baseUri}/${id}`);
   }
 
   addAssignment(assignment: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/assignments`, assignment);
+    return this.http.post(`${this.baseUri}`, assignment);
   }
 
   updateAssignment(assignment: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/assignments`, assignment);
+    return this.http.put(`${this.baseUri}`, assignment);
   }
 
   deleteAssignment(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/assignments/${id}`);
+    return this.http.delete(`${this.baseUri}/${id}`);
   }
 
   

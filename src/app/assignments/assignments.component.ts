@@ -49,34 +49,25 @@ export class AssignmentsComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    console.log("ngOnInit appelé lors de l'instanciation du composant");
-
-    // On récupère les assignments depuis le service
+    console.log("ngOnInit appelé");
     this.getAssignments();
-
-    /*
-    // on veut passer la propriété ajoutActive à true au bout de 3 secondes
-    setTimeout(() => {
-      this.ajoutActive = true;
-    }, 3000);
-    */
   }
 
   getAssignments() {
+    // Pour la pagination
     this.assignementsService.getAssignmentsPagines(this.page, this.limit)
-      .subscribe((data: any) => {
-        this.assignments = data.docs;
-        this.page = data.page;
-        this.limit = data.limit;
-        this.totalDocs = data.totalDocs;
-        this.totalPages = data.totalPages;
-        this.pagingCounter = data.pagingCounter;
-        this.hasPrevPage = data.hasPrevPage;
-        this.hasNextPage = data.hasNextPage;
-        this.prevPage = data.prevPage;
-        this.nextPage = data.nextPage;
-
-        console.log("Données reçues dans le subscribe");
+      .subscribe({
+        next: (data) => {
+          console.log("Données reçues :", data);
+          this.assignments = data.docs || data; // Adaptez selon la structure de votre réponse
+          this.totalDocs = data.totalDocs;
+          this.totalPages = data.totalPages;
+          this.page = data.page;
+          this.limit = data.limit;
+        },
+        error: (error) => {
+          console.error("Erreur lors de la récupération des assignments :", error);
+        }
       });
   }
 
