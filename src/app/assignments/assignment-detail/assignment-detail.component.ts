@@ -79,14 +79,11 @@ export class AssignmentDetailComponent implements OnInit{
   onDeleteAssignment() {
     if(!this.assignmentTransmis) return;
     
-    // On utilise le service pour supprimer l'assignment
-    this.assignmentsService.deleteAssignment(this.assignmentTransmis)
+    // Correction: passer l'ID au lieu de l'objet complet
+    this.assignmentsService.deleteAssignment(this.assignmentTransmis._id)
     .subscribe(message => {
       console.log(message);
-      // on cache la vue de détail puisque
-      // l'assignment a été supprimé
       this.assignmentTransmis = undefined;
-      // On re  affiche la liste
       this.router.navigate(['/home']);
     });
   }
@@ -95,8 +92,9 @@ export class AssignmentDetailComponent implements OnInit{
     if(!this.assignmentTransmis) return;
     
     this.router.navigate(["/assignments", this.assignmentTransmis._id, 'edit']);
-}
-isAdmin():boolean {
-  return this.authService.loggedIn;
-}
+  }
+
+  isAdmin(): boolean {
+    return this.authService.isLoggedIn(); // ou this.authService.loggedIn
+  }
 }

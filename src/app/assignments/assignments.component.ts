@@ -17,7 +17,7 @@ import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-assignments',
-  imports: [CommonModule, RenduDirective, NonRenduDirective,
+  imports: [CommonModule,
     MatListModule, MatDividerModule, MatButtonModule,
     MatInputModule,MatFormFieldModule,FormsModule,
     MatTableModule, MatPaginatorModule,
@@ -64,7 +64,7 @@ export class AssignmentsComponent implements OnInit {
 
   getAssignments() {
     this.assignementsService.getAssignmentsPagines(this.page, this.limit)
-      .subscribe(data => {
+      .subscribe((data: any) => {
         this.assignments = data.docs;
         this.page = data.page;
         this.limit = data.limit;
@@ -78,7 +78,6 @@ export class AssignmentsComponent implements OnInit {
 
         console.log("Données reçues dans le subscribe");
       });
-    console.log("APRES L'APPEL AU SERVICE");
   }
 
   pageSuivante() {
