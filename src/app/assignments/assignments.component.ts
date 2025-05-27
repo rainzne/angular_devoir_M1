@@ -45,7 +45,7 @@ export class AssignmentsComponent implements OnInit {
 
   // Attention, pour l'injection de service, mettre en private !!! Sinon
   // ça ne marche pas
-  constructor(private assignementsService: AssignmentsService,
+  constructor(private assignmentsService: AssignmentsService,
               private router: Router) {}
 
   ngOnInit() {
@@ -55,7 +55,7 @@ export class AssignmentsComponent implements OnInit {
 
   getAssignments() {
     // Pour la pagination
-    this.assignementsService.getAssignmentsPagines(this.page, this.limit)
+    this.assignmentsService.getAssignmentsPagines(this.page, this.limit)
       .subscribe({
         next: (data) => {
           console.log("Données reçues :", data);
@@ -105,11 +105,14 @@ export class AssignmentsComponent implements OnInit {
   }
 
   afficheDetail(row: any) {
-    console.log(row);
-    // On récupère l'id de l'assignment situé dans la colonne _id de la ligne
-    // sélectionnée
-    let id = row._id;
-    // et on utilise le routeur pour afficher le détail de l'assignment
-    this.router.navigate(['/assignments', id]);
+    console.log("Assignment cliqué:", row);
+    
+    if (row && row._id) {
+      let id = row._id;
+      console.log("Navigation vers l'ID:", id);
+      this.router.navigate(['/assignments', id]);
+    } else {
+      console.error("Aucun ID trouvé pour cet assignment:", row);
+    }
   }
 }

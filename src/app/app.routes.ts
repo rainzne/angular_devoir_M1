@@ -28,7 +28,9 @@ export const routes: Routes = [
     {path: 'assignments/:id', component: AssignmentDetailComponent},
     // Pour la modification d'un assignment existant
     {path: 'assignments/:id/edit', component: EditAssignmentComponent, canActivate: [authGuard]},
-
+    { path: '', redirectTo: '/assignments', pathMatch: 'full' },
+    { path: 'assignments', component: AssignmentsComponent },
+    { path: 'assignments/:id', component: AssignmentDetailComponent },
     
    
     // Pour l'erreur 404

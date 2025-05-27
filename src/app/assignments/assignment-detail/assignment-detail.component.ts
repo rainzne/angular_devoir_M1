@@ -23,9 +23,12 @@ export class AssignmentDetailComponent implements OnInit{
   @Input()
   assignmentTransmis?:Assignment;
 
-  constructor(private assignmentsService:AssignmentsService, 
-    private route:ActivatedRoute,
-    private router:Router,
+  assignmentAAficher: any = null;
+
+  constructor(
+    private assignmentsService: AssignmentsService,
+    private route: ActivatedRoute,
+    private router: Router,
     private authService:AuthService) {}
 
   ngOnInit(): void {
