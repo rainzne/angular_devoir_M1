@@ -1,39 +1,88 @@
-
-.rendu {
-    color:green;
+/* CONTAINER GENERAL */
+.assignments-list-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-.nonRendu {
-    background-color: yellow;
-    color:red;
-    border: 2px solid red;
+/* PARAGRAPHES DE MÉTADONNÉES */
+.assignments-list-container p {
+  font-size: 1rem;
+  margin: 16px 0;
 }
 
-table {
-    width: 50%;
+/* INPUT RANGE */
+input[type="range"] {
+  width: 200px;
+  vertical-align: middle;
+  margin-left: 12px;
+}
+
+/* TABLE */
+table.mat-table {
+  width: 100%;
+  margin-top: 24px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+/* HEADER */
+.mat-header-cell {
+  background-color: #1976d2;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+}
+
+/* CELLULES */
+.mat-cell {
+  padding: 12px;
+  font-size: 0.95rem;
+}
+
+/* LIGNES HOVERABLES */
+.mat-row:hover {
+  background-color: #f0f8ff;
+  cursor: pointer;
+}
+
+/* PAGINATION BUTTONS */
+button[mat-flat-button] {
+  margin: 0 6px;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+}
+
+/* MAT PAGINATOR */
+mat-paginator {
+  margin-top: 24px;
+}
+
+/* ALIGNEMENT PAGINATION & CONTRÔLES */
+.pagination-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* RESPONSIVE ADAPTÉ */
+@media (max-width: 768px) {
+  .assignments-list-container {
+    padding: 16px;
   }
 
-  .mat-column-nom {  
-    width: 400px;
-    border-right: 1px solid currentColor;
-    padding-right: 24px;
-    font-style: italic;
+  table.mat-table {
+    font-size: 0.85rem;
   }
-  
-  .mat-column-dateDeRendu {
-    width: 50px;
-    padding-left: 16px;
-    text-align: center;
 
+  button[mat-flat-button] {
+    font-size: 0.8rem;
+    padding: 4px 10px;
   }
-  
-  .mat-column-demo-rendu {
-    font-style: italic;
-    text-align: center;
-  }
-  
-  .mat-column-demo-id {
-    text-align: center;
-    font-weight: bold;
-  }
-  
+}

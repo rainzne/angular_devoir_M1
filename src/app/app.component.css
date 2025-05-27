@@ -1,11 +1,107 @@
-.mat-sidenav-container {
-  height: calc(205vh-115vh);
+/* GLOBAL */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
 
+/* STRUCTURE PRINCIPALE */
+.app-sidenav-container {
+  height: 100vh;
 }
+
+/* TOOLBAR */
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+/* TITRE DANS LA TOOLBAR */
+.toolbar-title {
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+/* ESPACE ENTRE ÉLÉMENTS TOOLBAR */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* CONTENU CENTRAL */
+.main-content {
+  padding: 24px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  min-height: calc(100vh - 64px); /* 64px = hauteur de la toolbar */
+}
+
+/* SIDENAV */
 mat-sidenav {
-  width: max-content;
-  background-color: azure;
+  width: 250px;
+  background-color: #f0f0f0;
+  padding-top: 16px;
 }
-button {
-  margin-bottom: 5px;
+
+/* LISTE DE NAVIGATION */
+mat-nav-list button {
+  width: 100%;
+  text-align: left;
+}
+
+/* STYLE DES CARTES DE CONTENU */
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* BOUTONS GÉNÉRAUX */
+button[mat-button], button[mat-raised-button] {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+/* PIED DE PAGE */
+.app-footer {
+  background-color: #eeeeee;
+  color: #555;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  border-top: 1px solid #ddd;
+}
+
+/* UTILITAIRES */
+.mt-20 {
+  margin-top: 20px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.text-center {
+  text-align: center;
+}
+
+/* RESPONSIVE : petit écran */
+@media (max-width: 768px) {
+  mat-sidenav {
+    width: 200px;
+  }
+
+  .main-content {
+    padding: 16px;
+  }
+
+  .toolbar-title {
+    font-size: 18px;
+  }
 }

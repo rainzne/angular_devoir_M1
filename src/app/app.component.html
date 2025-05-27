@@ -1,16 +1,6 @@
-  
-  <button mat-button color="primary"(click)="login()"> login</button>
-  <button mat-button color="primary"(click)="logout()"> logout</button>
-
-
-<mat-toolbar color="primary">
-   
-<mat-toolbar-row>
-  <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
-</mat-toolbar-row>
-</mat-toolbar>
-<mat-sidenav-container class="example-container">
-  <mat-sidenav [(opened)]="opened" #sidenav mode="side">
+<mat-sidenav-container class="app-sidenav-container">
+  <!-- Barre latérale -->
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
     <mat-nav-list>
       <button mat-list-item routerLink="/home" (click)="sidenav.close()">
         <mat-icon>home</mat-icon>
@@ -30,7 +20,24 @@
       </button>
     </mat-nav-list>
   </mat-sidenav>
+
+  <!-- Contenu principal -->
   <mat-sidenav-content>
-    <router-outlet></router-outlet>
+    <!-- Toolbar -->
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-title">AssignmentApp</span>
+      <span class="spacer"></span>
+      <button mat-button color="accent" (click)="login()">Login</button>
+      <button mat-button color="warn" (click)="logout()">Logout</button>
+    </mat-toolbar>
+
+    <!-- Contenu routé -->
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
+</mat-sidenav-container>
 

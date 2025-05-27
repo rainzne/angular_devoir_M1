@@ -8,17 +8,15 @@
 </a> -->
 
 <!-- <h3>Ici en liste</h3> -->
-<p>Nombre total d'assignments dans la base : {{totalDocs}}</p>
-<p>
-    Nombre de documents par page : {{limit}}
-    <input
-            type="range" min="1" max="100" step="1" value=4
-           [(ngModel)]="limit" (change)="getAssignments()"
-    >
-</p>
-<p>Page courante : {{page}}</p>
-<p>Nombre total de pages : {{totalPages}}</p>
-<p>
+<div class="assignments-list-container">
+  <p>Nombre total d'assignments dans la base : {{totalDocs}}</p>
+  <p>
+      Nombre de documents par page : {{limit}}
+      <input type="range" min="1" max="100" step="1" value=4 [(ngModel)]="limit" (change)="getAssignments()">
+  </p>
+  <p>Page courante : {{page}}</p>
+  <p>Nombre total de pages : {{totalPages}}</p>
+  <p>
     <button mat-flat-button 
         color="primary"
         (click)="premierePage()">
@@ -74,6 +72,4 @@
     </tr>
     
   </table>
-  
-  
-  
+</div>
