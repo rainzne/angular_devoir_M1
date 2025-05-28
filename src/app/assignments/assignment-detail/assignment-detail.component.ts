@@ -83,7 +83,7 @@ export class AssignmentDetailComponent implements OnInit{
     if(!this.assignmentTransmis) return;
     
     // Correction: passer l'ID au lieu de l'objet complet
-    this.assignmentsService.deleteAssignment(this.assignmentTransmis._id)
+    this.assignmentsService.deleteAssignment(this.assignmentTransmis._id!)
     .subscribe(message => {
       console.log(message);
       this.assignmentTransmis = undefined;

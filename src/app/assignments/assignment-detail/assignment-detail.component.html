@@ -3,7 +3,20 @@
         <mat-card-header>
           <mat-card-title> {{assignmentTransmis.nom}}</mat-card-title>
           <mat-card-subtitle>A rendre le : {{assignmentTransmis.dateDeRendu| date:"d/M/YY"}}</mat-card-subtitle>
+        <mat-card-subtitle> Auteur  : {{assignmentTransmis.auteur}}</mat-card-subtitle>
+        <mat-card-subtitle> Matière : {{assignmentTransmis.matiere}}</mat-card-subtitle>
+        <mat-card-subtitle> Note : {{assignmentTransmis.note}}</mat-card-subtitle>
+        <mat-card-subtitle> Rendu : {{assignmentTransmis.rendu ? 'Oui' : 'Non'}}</mat-card-subtitle>
+        <mat-card-subtitle>Prof :  {{assignmentTransmis.prof}} </mat-card-subtitle>
+         <mat-card-subtitle>Photo :    @if(assignmentTransmis.photo) {
+            <img mat-card-image width="100" height="100"
+                 [src]="assignmentTransmis.photo" 
+                 [alt]="assignmentTransmis.nom"
+                 class="assignment-photo">
+        } </mat-card-subtitle>
+        <mat-card-subtitle> Remarque : {{assignmentTransmis.remarque}}</mat-card-subtitle>
         </mat-card-header>
+       
         <mat-card-actions class="containerBoutons">
                 @if(!assignmentTransmis.rendu) {
                     <mat-checkbox [checked]="assignmentTransmis.rendu"
@@ -12,8 +25,10 @@
                     Rendu
                     </mat-checkbox>
                 }
-                
+                  
                     <button mat-raised-button color="primary" (click)="onClickEdit()" [disabled]="!isAdmin()">EDIT</button>
+
+
               
 
                 <button mat-raised-button color="primary" (click)="onDeleteAssignment()">DELETE</button>

@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 export class AddAssignmentComponent  {
   // Pour le formulaire d'ajout
   nomDevoir = "";
-  dateDeRendu!:Date;
+  dateDeRendu!:string;
 
   constructor(private assignmentsService:AssignmentsService, 
               private router:Router) {}

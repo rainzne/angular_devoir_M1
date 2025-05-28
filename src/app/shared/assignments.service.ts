@@ -36,11 +36,10 @@ export class AssignmentsService {
     return this.http.delete(`${this.baseUri}/${id}`);
   }
 
-  
   peuplerBDavecForkJoin(): Observable<any> {
     const requests = bdInitialAssignments.map(assignment => 
       this.addAssignment(assignment)
     );
-    return forkJoin(requests);
+     return forkJoin(requests);
   }
 }
