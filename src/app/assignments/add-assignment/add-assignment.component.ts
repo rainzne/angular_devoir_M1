@@ -8,19 +8,32 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import { Assignment } from '../assignment.model';
 import { AssignmentsService } from '../../shared/assignments.service';
 import { Router } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select'; // <-- Ajoutez cette ligne
 
 @Component({
   providers: [provideNativeDateAdapter()],
   selector: 'app-add-assignment',
-  imports: [FormsModule, MatInputModule, MatDatepickerModule, 
-    MatButtonModule, MatFormFieldModule],
+  imports: [
+    FormsModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule 
+  ],
   templateUrl: './add-assignment.component.html',
   styleUrl: './add-assignment.component.css'
+
 })
 export class AddAssignmentComponent  {
   // Pour le formulaire d'ajout
   nomDevoir = "";
+  nomProfesseur = "";
+  nomMatiere = "";
+  nomAuteur = ""; 
   dateDeRendu!:string;
+  matieres: string[] = ['Web', '3Dgame', 'Angular']; // Liste des matières
+  matiere = ""; // Valeur sélectionnée
 
   constructor(private assignmentsService:AssignmentsService, 
               private router:Router) {}
@@ -39,6 +52,9 @@ onSubmit(event:any) {
 
       let a = new Assignment();
       a.nom = this.nomDevoir;
+      a.prof = this.nomProfesseur;
+      a.matiere = this.matiere; // <-- Use the selected value
+      a.auteur = this.nomAuteur;
       a.dateDeRendu = this.dateDeRendu;
       a.rendu = false;
 

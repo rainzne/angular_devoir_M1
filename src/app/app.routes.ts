@@ -7,6 +7,7 @@ import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assi
 import { authGuard } from './shared/auth.guard';
 import { HomeComponent } from '../home/home.component';
 
+
 export const routes: Routes = [
     // Pour la page d'accueil
     // On y accèdera avec l'URL : http://localhost:4200/home

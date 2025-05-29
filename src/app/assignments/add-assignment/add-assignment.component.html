@@ -12,6 +12,23 @@
         >
     </mat-form-field>
     <mat-form-field>
+        <input matInput 
+               placeholder="Nom du professeur" 
+               [(ngModel)]="nomProfesseur" 
+               name="nomProfesseur" 
+               required
+        >
+    </mat-form-field>
+
+    <mat-form-field>
+
+      <mat-label>Choisissez la matière</mat-label>
+      <mat-select [(ngModel)]="matiere" name="matiere" required>
+        <mat-option *ngFor="let mat of matieres" [value]="mat">{{ mat }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field>
         <mat-label>Choisissez date de rendu</mat-label>
         <input matInput [matDatepicker]="picker"
                [(ngModel)]="dateDeRendu" 
