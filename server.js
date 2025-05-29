@@ -13,7 +13,7 @@ const app = express();
 app.use(express.static(__dirname + "/dist/assignment-app/browser"));
 
 app.get("/*", function (req, res) {
- res.sendFile(path.join(__dirname + "/index.html"));
+ res.sendFile(path.join(__dirname + "/dist/assignment-app/browser/index.html"));
 });
 
 // Start the app by listening on the default Heroku port
