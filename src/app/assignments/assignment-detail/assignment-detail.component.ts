@@ -12,7 +12,7 @@ import { AuthService } from '../../shared/auth.service';
 @Component({
   selector: 'app-assignment-detail',
   imports: [MatCardModule, CommonModule, MatButtonModule, 
-    MatCheckboxModule, RouterLink],
+    MatCheckboxModule],
   templateUrl: './assignment-detail.component.html',
   styleUrl: './assignment-detail.component.css'
 })

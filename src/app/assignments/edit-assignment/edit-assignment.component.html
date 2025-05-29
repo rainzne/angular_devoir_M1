@@ -6,10 +6,10 @@
     <mat-form-field appearance="fill">
         <mat-label>Nom du devoir</mat-label>
         <input matInput 
-               [placeholder]="assignment?.nom || 'Saisissez le nom du devoir'"
+               [placeholder]="assignment.nom || 'Saisissez le nom du devoir'"
                [(ngModel)]="nomDevoir" 
                name="nomDevoir"
-               value="{{ assignment?.nom}}" 
+               value="{{ assignment.nom}}" 
                >
    
     </mat-form-field>
@@ -17,10 +17,10 @@
     <mat-form-field appearance="fill">
         <mat-label>Auteur</mat-label>
         <input matInput 
-               [placeholder]="assignment?.auteur || 'Nom de l\'auteur'"
+               [placeholder]="assignment.auteur || 'Nom de l\'auteur'"
                [(ngModel)]="auteur" 
                name="auteur" 
-                value="{{ assignment?.auteur }}"
+                value="{{ assignment.auteur }}"
                >
        
     </mat-form-field>
@@ -30,7 +30,7 @@
         <mat-select [(ngModel)]="matiere" 
                     name="matiere" 
                     (selectionChange)="onMatiereChange()" 
-                    value="{{ assignment?.matiere }}"
+                    value="{{ assignment.matiere }}"
                     >
             <mat-option value="">-- Choisissez une matière --</mat-option>
             <mat-option *ngFor="let mat of matieres" [value]="mat.nom">
@@ -45,7 +45,7 @@
     <mat-form-field appearance="fill">
         <mat-label>Date de rendu</mat-label>
         <input matInput [matDatepicker]="picker"
-               [placeholder]="assignment?.dateDeRendu || 'Choisissez la date'"
+               [placeholder]="assignment.dateDeRendu || 'Choisissez la date'"
                [(ngModel)]="dateDeRendu" 
                name="dateDeRendu"
                

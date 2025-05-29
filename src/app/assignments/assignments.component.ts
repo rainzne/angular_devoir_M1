@@ -21,7 +21,7 @@ import { Router, RouterLink } from '@angular/router';
     MatListModule, MatDividerModule, MatButtonModule,
     MatInputModule,MatFormFieldModule,FormsModule,
     MatTableModule, MatPaginatorModule,
-    RouterLink],
+  ],
   templateUrl: './assignments.component.html',
   styleUrl: './assignments.component.css'
 })
