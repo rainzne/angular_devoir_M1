@@ -1,6 +1,97 @@
 .form {
-    display:flex;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.info-section {
+  background-color: #f5f5f5;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.info-section h4 {
+  margin-top: 0;
+  color: #666;
+  font-size: 16px;
+}
+
+.images-preview {
+  display: flex;
+  gap: 15px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-container {
+  flex: 1;
+  min-width: 120px;
+  max-width: 150px;
+  text-align: center;
+}
+
+.image-container label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #333;
+  font-size: 12px;
+}
+
+.preview-image {
+  width: 100%;
+  max-width: 120px;        /* Réduit de 200px à 120px */
+  height: 80px;            /* Réduit de 150px à 80px */
+  object-fit: cover;
+  border-radius: 6px;      /* Réduit de 8px à 6px */
+  border: 1px solid #ddd;  /* Réduit de 2px à 1px */
+  display: block;
+  margin: 0 auto;
+}
+
+button[mat-raised-button] {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+}
+
+/* Version encore plus petite si besoin */
+.preview-image-small {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .images-preview {
     flex-direction: column;
-    margin:5px;
- }
- 
+    align-items: center;
+  }
+  
+  .image-container {
+    min-width: auto;
+    max-width: 100px;
+  }
+  
+  .preview-image {
+    max-width: 100px;
+    height: 70px;
+  }
+}
+
+/* Layout compact pour les infos auto */
+.info-section mat-form-field {
+  margin-bottom: 8px;
+}

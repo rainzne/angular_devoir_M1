@@ -1,46 +1,77 @@
 <h3>Ajout de devoir</h3>
 <form ngForm #addAssignmentForm 
       (submit)="onSubmit($event); addAssignmentForm.reset()" 
-      class="form"
->
-    <mat-form-field>
+      class="form">
+      
+    <mat-form-field appearance="fill">
+        <mat-label>Nom du devoir</mat-label>
         <input matInput 
-               placeholder="Nom du devoir" 
+               placeholder="Saisissez le nom du devoir" 
                [(ngModel)]="nomDevoir" 
                name="nomDevoir" 
-               required
-        >
+               required>
     </mat-form-field>
-    <mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Auteur</mat-label>
         <input matInput 
-               placeholder="Nom du professeur" 
-               [(ngModel)]="nomProfesseur" 
-               name="nomProfesseur" 
-               required
-        >
+               placeholder="Nom de l'auteur" 
+               [(ngModel)]="auteur" 
+               name="auteur" 
+               required>
     </mat-form-field>
 
-    <mat-form-field>
-
-      <mat-label>Choisissez la matière</mat-label>
-      <mat-select [(ngModel)]="matiere" name="matiere" required>
-        <mat-option *ngFor="let mat of matieres" [value]="mat">{{ mat }}</mat-option>
-      </mat-select>
+    <mat-form-field appearance="fill">
+        <mat-label>Matière</mat-label>
+        <mat-select [(ngModel)]="matiere" 
+                    name="matiere" 
+                    (selectionChange)="onMatiereChange()" 
+                    required>
+            <mat-option value="">-- Choisissez une matière --</mat-option>
+            <mat-option *ngFor="let mat of matieres" [value]="mat.nom">
+                {{ mat.nom }}
+            </mat-option>
+        </mat-select>
     </mat-form-field>
+
+    <!-- Affichage des informations auto-remplies -->
+    <div class="info-section" *ngIf="matiere">
+        <h4>Informations automatiques :</h4>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Professeur</mat-label>
+            <input matInput 
+                   [value]="prof" 
+                   readonly>
+        </mat-form-field>
+
+        <div class="images-preview" *ngIf="photo && photo_prof">
+            <div class="image-container">
+                <label>Photo de la matière :</label>
+                <img [src]="photo" [alt]="matiere" class="preview-image">
+            </div>
+            <div class="image-container">
+                <label>Photo du professeur :</label>
+                <img [src]="photo_prof" [alt]="prof" class="preview-image">
+            </div>
+        </div>
+    </div>
     
-    <mat-form-field>
-        <mat-label>Choisissez date de rendu</mat-label>
+    <mat-form-field appearance="fill">
+        <mat-label>Date de rendu</mat-label>
         <input matInput [matDatepicker]="picker"
                [(ngModel)]="dateDeRendu" 
                name="dateDeRendu"
                required>
-        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-hint>Choisissez la date limite</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <button mat-raised-button color="primary">
-        Ajouter un devoir à rendre
+    <button mat-raised-button 
+            color="primary" 
+            type="submit"
+            [disabled]="!nomDevoir || !auteur || !matiere || !dateDeRendu">
+        Ajouter le devoir
     </button>
 </form>
-

@@ -1,40 +1,85 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AssignmentsService } from '../../shared/assignments.service';
-import { Assignment } from '../assignment.model';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import {MatOptionModule,provideNativeDateAdapter} from '@angular/material/core';
+import { Assignment } from '../assignment.model';
+import { AssignmentsService } from '../../shared/assignments.service';
+import { ActivatedRoute,Router } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select'; 
 import { CommonModule } from '@angular/common';
 
 @Component({
+  providers: [provideNativeDateAdapter()],
   selector: 'app-edit-assignment',
-  standalone: true,
   imports: [
     CommonModule,
-    FormsModule, 
-    MatInputModule, 
-    MatButtonModule, 
-    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule
+    
   ],
   templateUrl: './edit-assignment.component.html',
   styleUrl: './edit-assignment.component.css'
+
 })
 export class EditAssignmentComponent implements OnInit {
   assignment!: Assignment;
-  nomAssignment!: string;
-  dateDeRendu!: Date; // Pour le datepicker Angular Material
+  nomDevoir = "";
+  prof = "";
+  nomMatiere = "";
+  auteur = ""; 
+  dateDeRendu!:string;
+  photo = "";
+  photo_prof = "";
+  // matieres: string[] = ['Web', '3Dgame', 'Angular']; // Liste des matières
+  matiere = ""; 
+
+  matieres = [
+    {
+      nom: 'Angular',
+      prof: 'ProfAngular',
+      photo: 'https://fastly.picsum.photos/id/137/4752/3168.jpg?hmac=dGsgAtPkFewFByZXZOmSg0U7Mohr43GyVu3n1AHVIyg',
+      photo_prof: 'https://fastly.picsum.photos/id/103/2592/1936.jpg?hmac=aC1FT3vX9bCVMIT-KXjHLhP6vImAcsyGCH49vVkAjPQ'
+    },
+    {
+      nom: 'Web',
+      prof: 'ProfWeb',
+      photo: 'https://fastly.picsum.photos/id/140/2448/2448.jpg?hmac=zQCgUWz77YSeT2F-IBV7cf_D25TabaB4l4tZChoyRI0',
+      photo_prof: 'https://fastly.picsum.photos/id/91/3504/2336.jpg?hmac=tK6z7RReLgUlCuf4flDKeg57o6CUAbgklgLsGL0UowU'
+    },
+    {
+      nom: '3Dgame',
+      prof: 'Prof3Dgame',
+      photo: 'https://fastly.picsum.photos/id/145/4288/2848.jpg?hmac=UkhcwQUE-vRBFXzDN1trCwWigpm7MXG5Bl5Ji103QG4',
+      photo_prof: 'https://fastly.picsum.photos/id/5/5000/3334.jpg?hmac=R_jZuyT1jbcfBlpKFxAb0Q3lof9oJ0kREaxsYV3MgCc'
+    }
+  ];
   
   constructor(
     private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
+               onMatiereChange() {
+    const matiereSelectionnee = this.matieres.find(m => m.nom === this.matiere);
+    if (matiereSelectionnee) {
+      this.prof = matiereSelectionnee.prof;
+      this.photo = matiereSelectionnee.photo;
+      this.photo_prof = matiereSelectionnee.photo_prof;
+    } else {
+      this.prof = "";
+      this.photo = "";
+      this.photo_prof = "";
+    }
+  }
+
 
   ngOnInit(): void {
     this.getAssignment();
@@ -45,34 +90,41 @@ export class EditAssignmentComponent implements OnInit {
     
     this.assignmentsService.getAssignment(id).subscribe(assignment => {
       this.assignment = assignment;
-      this.nomAssignment = assignment.nom;
+      this.nomDevoir = assignment.nom;
+      this.auteur = assignment.auteur;
+        this.dateDeRendu = assignment.dateDeRendu ;
+        this.matiere = assignment.matiere ;
+        this.prof = assignment.prof ;
+        this.photo = assignment.photo;
+        this.photo_prof = assignment.photo_prof;
+
       
-      // Conversion string vers Date pour le datepicker
-      if (assignment.dateDeRendu) {
-        // Si la date est au format MM/dd/yyyy
-        this.dateDeRendu = new Date(assignment.dateDeRendu);
-      }
+     
     });
   }
 
   onSaveAssignment() {
     if (!this.assignment) return;
     
-    // Mise à jour des valeurs
-    this.assignment.nom = this.nomAssignment;
-    
-    // Conversion Date vers string pour l'API
-    if (this.dateDeRendu) {
-      // Format MM/dd/yyyy pour correspondre à vos données
-      const month = (this.dateDeRendu.getMonth() + 1).toString().padStart(2, '0');
-      const day = this.dateDeRendu.getDate().toString().padStart(2, '0');
-      const year = this.dateDeRendu.getFullYear();
-      this.assignment.dateDeRendu = `${month}/${day}/${year}`;
-    }
+    // Mettre à jour l'assignment existant au lieu de créer un nouveau
+    this.assignment.nom = this.nomDevoir;
+    this.assignment.auteur = this.auteur;
+    this.assignment.dateDeRendu = this.dateDeRendu;
+    this.assignment.matiere = this.matiere;
+    this.assignment.prof = this.prof;
+    this.assignment.photo = this.photo;
+    this.assignment.photo_prof = this.photo_prof;
 
-    this.assignmentsService.updateAssignment(this.assignment).subscribe(message => {
-      console.log(message);
-      this.router.navigate(['/home']);
+    console.log("Assignment à sauvegarder:", this.assignment);
+
+    this.assignmentsService.updateAssignment(this.assignment).subscribe({
+      next: (message) => {
+       
+        this.router.navigate(['/assignments', this.assignment._id]);
+      },
+      error: (error) => {
+        console.error("Erreur lors de la sauvegarde:", error);
+      }
     });
   }
 }
