@@ -8,12 +8,19 @@
         <mat-card-subtitle> Note : {{assignmentTransmis.note}}</mat-card-subtitle>
         <mat-card-subtitle> Rendu : {{assignmentTransmis.rendu ? 'Oui' : 'Non'}}</mat-card-subtitle>
         <mat-card-subtitle>Prof :  {{assignmentTransmis.prof}} </mat-card-subtitle>
-         <mat-card-subtitle>Photo :    @if(assignmentTransmis.photo) {
+         <mat-card-subtitle>Photo de la Matière :    @if(assignmentTransmis.photo) {
             <img mat-card-image width="100" height="100"
                  [src]="assignmentTransmis.photo" 
                  [alt]="assignmentTransmis.nom"
                  class="assignment-photo">
         } </mat-card-subtitle>
+        <mat-card-subtitle> photo du prof : @if(assignmentTransmis.photo_prof) {
+            <img mat-card-image width="100" height="100"
+                 [src]="assignmentTransmis.photo_prof" 
+                 [alt]="assignmentTransmis.prof"
+                 class="prof-photo">
+        }
+        </mat-card-subtitle>
         <mat-card-subtitle> Remarque : {{assignmentTransmis.remarque}}</mat-card-subtitle>
         </mat-card-header>
        
