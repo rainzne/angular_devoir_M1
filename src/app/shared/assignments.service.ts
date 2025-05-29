@@ -8,7 +8,7 @@ import { bdInitialAssignments } from './data';
   providedIn: 'root'
 })
 export class AssignmentsService {
-  private baseUri = 'http://localhost:8010/api/assignments';
+  private baseUri = 'https://backend-l1o1.onrender.com/api/assignments';
 
   constructor(private http: HttpClient) { }
 
