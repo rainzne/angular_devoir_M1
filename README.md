@@ -59,3 +59,9 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## remerciment
+
+Suite à vos instructions, nous avons gardé le code premier assignment comme base du projet, qui avait été récupérer en partie sur votre Github afin de ne pas recommencer l'intégralité du projet.
+Le squelette du backend s'inspire de L'API qui nous a était fourni en court de web, bien entendu nous avons aussi utilisé GitHub copilot pour des problèmes de synchronisation entre le backend et frontend, ainsi que des problèmes d'inspections / erreurs génériques
+
